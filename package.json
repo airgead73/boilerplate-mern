@@ -4,7 +4,9 @@
   "description": "boilerplate for mern applications",
   "main": "index.js",
   "scripts": {
-    "start:clientkl": "cd client && npm start"
+    "start": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "clear": "rm -rf server/public .parcel-cache"
   },
   "repository": {
     "type": "git",

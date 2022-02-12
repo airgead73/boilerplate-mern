@@ -10,10 +10,11 @@
     }
   },
   "scripts": {
-    "start": "DOMAIN=$npm_config_domain CLIENTID=$npm_config_clientid BASEURL=$npm_config_baseurl parcel --open --port $npm_config_port --dist-dir dev",
+    "prestart": "npm run clear",
+    "start": "DOMAIN=$npm_config_domain CLIENTID=$npm_config_clientid BASEURL=$npm_config_baseurl parcel --open --port $npm_config_port --dist-dir ../server/public",
     "prebuild": "npm run clear",
-    "build": "parcel build",
-    "clear": "rm -rf public dev .parcel-cache"
+    "build": "DOMAIN=$npm_config_domain CLIENTID=$npm_config_clientid BASEURL=$npm_config_baseurl parcel build",
+    "clear": "rm -rf ../server/public .parcel-cache"
   },
   "keywords": [
     "parcel",
