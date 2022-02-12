@@ -14,4 +14,4 @@
 .parcel-cache
 /public
 /client/dev
-/client/public
+/server/public

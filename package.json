@@ -4,7 +4,7 @@
   "description": "boilerplate for mern applications",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:clientkl": "cd client && npm start"
   },
   "repository": {
     "type": "git",
