@@ -1,0 +1,14 @@
+# misc
+.DS_Store
+
+# environment
+.env
+.npmrc
+
+# dependencies
+/node_modules
+
+#parcel
+.parcel-cache
+/public
+/dev
