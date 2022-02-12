@@ -1,0 +1,32 @@
+$color: green;
+
+h1 {
+  text-align: center;
+  background-color: $color;
+  color: white;
+  padding: 10px 0;
+}
+
+.figure-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+h2 {
+  text-align: center;
+}
+
+figure {
+  border: 1px solid black;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  flex-basis: 20%;
+  & img {
+    display: block;
+    width: 100%;
+  }
+}
