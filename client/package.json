@@ -1,0 +1,17 @@
+{
+  "name": "mern-client",
+  "version": "1.0.0",
+  "description": "client for mern application",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "parcel",
+    "react",
+    "mern",
+    "scss"
+  ],
+  "author": "dan moneypenny",
+  "license": "MIT"
+}
