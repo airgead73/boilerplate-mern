@@ -2,10 +2,12 @@
   "name": "boilerplate-mern",
   "version": "1.0.0",
   "description": "boilerplate for mern applications",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "cd client && npm start",
+    "start": "node server/server.js",
+    "server": "nodemon -r dotenv/config server/server.js",
     "build": "cd client && npm run build",
+    "start:client": "cd client && npm start",
     "clear": "rm -rf server/public .parcel-cache"
   },
   "repository": {
@@ -25,5 +27,15 @@
   "bugs": {
     "url": "https://github.com/airgead73/boilerplate-mern/issues"
   },
-  "homepage": "https://github.com/airgead73/boilerplate-mern#readme"
+  "homepage": "https://github.com/airgead73/boilerplate-mern#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^6.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
