@@ -7,8 +7,11 @@
 
 # dependencies
 /node_modules
+/client/node_modules
+/server/node_modules
 
 #parcel
 .parcel-cache
 /public
-/dev
+/client/dev
+/client/public
