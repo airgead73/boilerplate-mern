@@ -1,0 +1,27 @@
+{
+  "name": "boilerplate-mern",
+  "version": "1.0.0",
+  "description": "boilerplate for mern applications",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/airgead73/boilerplate-mern.git"
+  },
+  "keywords": [
+    "parcel",
+    "mongodb",
+    "express",
+    "react",
+    "node",
+    "boilerplate"
+  ],
+  "author": "dan moneypenny",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/airgead73/boilerplate-mern/issues"
+  },
+  "homepage": "https://github.com/airgead73/boilerplate-mern#readme"
+}
