@@ -7,7 +7,9 @@ import {
   Home,
   About,
   Dashboard,
+  Goals,
   PageNotFound,
+  Products,
   Profile
 } from './pages';
 
@@ -42,7 +44,9 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route element={<ProtectedRoutes/>}>
           <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/goals" element={<Goals/>}/>
           <Route path="/profile" element={<Profile/>}/>
+          <Route path="/products" element={<Products/>}/>
         </Route>
         <Route path="*" element={<PageNotFound/>}/>
       </Routes>

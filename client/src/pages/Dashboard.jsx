@@ -1,23 +1,14 @@
-import useFetch from '../hooks/useFetch';
-import { SERVER_URL } from '../constants';
+import { Link } from 'react-router-dom';
 
-function Dashboard() {
-
-  const { data: goals, error, isPending } = useFetch(SERVER_URL);
+function Dashboard() {  
 
   return (
     <div>
       <h2>dashboard</h2>
-      { error && <div>{ error }</div> }
-      { isPending && <div>goals loading...</div> }
-      {/* <div className="figure-container">
-      { products && products.map((product) => (
-        <Figure key={product.id} item={product}/>
-      ))}
-      </div> */}
-      { goals && goals.map((goal) => {
-        <p key={goal.id}>{goal.text}</p>
-      }) }
+      <ul>
+        <li><Link to="/products">products</Link></li>
+        <li><Link to="/goals">goals</Link></li>
+      </ul>
 
     </div>
   )
