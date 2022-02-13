@@ -1,5 +1,6 @@
 import {
-  BASEURL
+  BASEURL,
+  SERVER_URL
 } from './uri';
 
 import {
@@ -10,5 +11,6 @@ import {
 export {
   BASEURL,
   DOMAIN,
-  CLIENTID
+  CLIENTID,
+  SERVER_URL
 }
