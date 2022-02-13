@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const Goal = require('../../models/goal.model');
 
 /**
  * @desc Get goals
@@ -7,7 +8,8 @@ const asyncHandler = require('express-async-handler');
  * */
 
 exports.readItems = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: 'Get goals'})
+  const goals = await Goal.find();
+  res.status(200).json(goals)
 });
 
 /**
@@ -30,8 +32,12 @@ exports.createItem = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error('please send text field')
   }
-  console.log(req.body);
-  res.status(200).json({ message: 'Create goal'})
+
+  const goal = await Goal.create({
+    text: req.body.text
+  });
+  
+  res.status(200).json(goal)
 });
 
 /**
@@ -40,7 +46,17 @@ exports.createItem = asyncHandler(async (req, res) => {
  * @access Private
  * */
 exports.updateItem = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Update goal ${req.params.id}`})
+  const goal = await Goal.findById(req.params.id);
+
+  if(!goal) {
+    res.status(400)
+    throw new Error('Goal not found')
+  }
+
+  const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, { new: true });
+
+  res.status(200).json(updatedGoal);
+  
 });
 
 /**
