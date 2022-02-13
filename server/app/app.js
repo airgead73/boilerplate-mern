@@ -3,6 +3,8 @@ const colors = require('colors');
 const connectDB = require('./config/db');
 const { apiRouter } = require('./controllers/routes');
 const { errorHandler } = require('./middleware/errorMiddleware');
+const helmet = require('helmet');
+const cors = require('cors');
 
 connectDB();
 const app = express();
@@ -11,6 +13,8 @@ const app = express();
  * @description middleware
  */
 
+app.use(helmet());
+app.use(cors({ origin: process.env.CLIENT_ORIGIN }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 

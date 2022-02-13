@@ -1,21 +1,23 @@
 import useFetch from '../hooks/useFetch';
-import { BASEURL } from '../constants';
-import { Figure } from '../components';
+import { SERVER_URL } from '../constants';
 
 function Dashboard() {
 
-  const { data: products, error, isPending } = useFetch(`${BASEURL}/products?limit=5&sort=desc`);
+  const { data: goals, error, isPending } = useFetch(SERVER_URL);
 
   return (
     <div>
       <h2>dashboard</h2>
       { error && <div>{ error }</div> }
-      { isPending && <div>products loading...</div> }
-      <div className="figure-container">
+      { isPending && <div>goals loading...</div> }
+      {/* <div className="figure-container">
       { products && products.map((product) => (
         <Figure key={product.id} item={product}/>
       ))}
-      </div>
+      </div> */}
+      { goals && goals.map((goal) => {
+        <p key={goal.id}>{goal.text}</p>
+      }) }
 
     </div>
   )
