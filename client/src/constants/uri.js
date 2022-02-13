@@ -1,5 +1,5 @@
 const { BASEURL } = process.env;
-const { SERVER_URL } = process.env
+const { SERVER_URL } = process.env;
 
 export {
   BASEURL,

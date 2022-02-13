@@ -6,6 +6,7 @@ const useSecureFetch = (_resource, _requestOptions) => {
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+  const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
 
@@ -16,27 +17,35 @@ const useSecureFetch = (_resource, _requestOptions) => {
 
   const createRequest = async (_url, _options) => {
 
-    const { getAccessTokenSilently } = useAuth0();
-    const token = await getAccessTokenSilently();
-    const { signal } = controller;
-    let config;
+    try {
+      
+      const token = await getAccessTokenSilently();
+      const { signal } = controller;
+      let config;
+  
+      // attach signal
+      if(_options) {
+        config = _options;
+        config.signal = signal;
+      } else {
+        config = { signal: signal }
+      }
+  
+      // attach headers
+      config.headers = {
+        Authorization: `Bearer ${token}`
+      }
+  
+      const newRequest = await new Request(_url, config);
+  
+      return newRequest;
 
-    // attach signal
-    if(_options) {
-      config = _options;
-      config.signal = signal;
-    } else {
-      config = { signal: signal }
+
+    } catch(error) {
+      console.log(error)
     }
 
-    // attach headers
-    config.headers = {
-      Authorization: `Bearer ${token}`
-    }
 
-    const newRequest = new Request(_url, config);
-
-    return newRequest;
 
   }
 
@@ -44,6 +53,7 @@ const useSecureFetch = (_resource, _requestOptions) => {
 
   const fetchData = async (_request) => {
     try {
+
 
       const response = await fetch(_request);       
 
