@@ -45,12 +45,13 @@ exports.createItem = asyncHandler(async (req, res) => {
  * @route PUT - /api/goals/:id
  * @access Private
  * */
-exports.updateItem = asyncHandler(async (req, res) => {
+exports.updateItem = asyncHandler(async (req, res, next) => {
   const goal = await Goal.findById(req.params.id);
 
   if(!goal) {
-    res.status(400)
-    throw new Error('Goal not found')
+    const error = new Error('Goal not found.');
+    error.status = 400
+    return next(error)
   }
 
   const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -64,7 +65,17 @@ exports.updateItem = asyncHandler(async (req, res) => {
  * @route GET - /api/goals/:id
  * @access Private
  * */
-exports.deleteItem = asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Delete goal ${req.params.id}`})
+exports.deleteItem = asyncHandler(async (req, res, next) => {
+  const goal = await Goal.findById(req.params.id);
+  if(!goal) {
+    const error = new Error('Goal not found.');
+    error.status = 400
+    return next(error)
+  }
+
+  await goal.remove();
+
+  res.status(200).json({ id: req.params.id });
+  
 })
 
