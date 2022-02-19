@@ -1,7 +1,7 @@
 const express = require('express');
 const colors = require('colors');
 const connectDB = require('./config/db');
-const { apiRouter } = require('./controllers/routes');
+const { apiRouter } = require('./routes');
 const { errorHandler } = require('./middleware/errorMiddleware');
 const helmet = require('helmet');
 const cors = require('cors');

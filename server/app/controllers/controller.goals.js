@@ -1,34 +1,12 @@
 const asyncHandler = require('express-async-handler');
-const Goal = require('../../models/goal.model');
-
-/**
- * @desc Get goals
- * @route GET - /api/goals
- * @access Private
- * */
-
-exports.readItems = asyncHandler(async (req, res) => {
-  const goals = await Goal.find();
-  console.log(goals)
-  res.status(200).json(goals)
-});
-
-/**
- * @desc Get single goal
- * @route GET - /api/goals/:id
- * @access Private
- * */
-exports.readItem =  asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Get goal ${req.params.id}`});
-  
-});
+const Goal = require('../models/goal.model');
 
 /**
  * @desc Create goal
  * @route CREATE - /api/goals
  * @access Private
  * */
-exports.createItem = asyncHandler(async (req, res) => {
+ exports.create = asyncHandler(async (req, res) => {
   if(!req.body.text) {
     res.status(400);
     throw new Error('please send text field')
@@ -42,11 +20,33 @@ exports.createItem = asyncHandler(async (req, res) => {
 });
 
 /**
+ * @desc Get goals
+ * @route GET - /api/goals
+ * @access Private
+ * */
+
+exports.read = asyncHandler(async (req, res) => {
+  const goals = await Goal.find();
+  console.log(goals)
+  res.status(200).json(goals)
+});
+
+/**
+ * @desc Get single goal
+ * @route GET - /api/goals/:id
+ * @access Private
+ * */
+exports.readOne =  asyncHandler(async (req, res) => {
+  res.status(200).json({ message: `Get goal ${req.params.id}`});
+  
+});
+
+/**
  * @desc Update goal
  * @route PUT - /api/goals/:id
  * @access Private
  * */
-exports.updateItem = asyncHandler(async (req, res, next) => {
+exports.update = asyncHandler(async (req, res, next) => {
   const goal = await Goal.findById(req.params.id);
 
   if(!goal) {
@@ -66,7 +66,7 @@ exports.updateItem = asyncHandler(async (req, res, next) => {
  * @route GET - /api/goals/:id
  * @access Private
  * */
-exports.deleteItem = asyncHandler(async (req, res, next) => {
+exports.remove = asyncHandler(async (req, res, next) => {
   const goal = await Goal.findById(req.params.id);
   if(!goal) {
     const error = new Error('Goal not found.');
