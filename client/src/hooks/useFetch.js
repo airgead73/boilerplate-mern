@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-import { useState, useEffect } from 'react';
-
 const useFetch = (resource, requestConfig) => {
 
   const [data, setData] = useState(null);

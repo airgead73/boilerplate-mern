@@ -27,7 +27,6 @@ const Goal = require('../models/goal.model');
 
 exports.read = asyncHandler(async (req, res) => {
   const goals = await Goal.find();
-  console.log(goals)
   res.status(200).json(goals)
 });
 
