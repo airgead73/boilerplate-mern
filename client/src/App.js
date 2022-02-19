@@ -21,13 +21,6 @@ import ProtectedRoutes from './auth/ProtectedRoutes';
 
 function App() {   
 
-  console.log({
-    domain: DOMAIN,
-    id: CLIENTID,
-    server: URL_SERVER,
-    store: URL_STORE
-  })
-
   const {
     isLoading,
     error
