@@ -24,21 +24,27 @@ const useSecureFetch = (resource, requestConfig) => {
       const token = await getAccessTokenSilently();
 
         // add signal to request config
-      if(requestConfig) {
-        config = requestConfig;
-        config.signal = signal;
-      } else {
-        config = { signal: signal }
-      }
+      // if(requestConfig) {
+      //   config = requestConfig;
+      //   config.signal = signal;
+      // } else {
+      //   config = { signal: signal }
+      // }
 
-      config.headers = {
-        Authorization: `Bearer ${token}`
-      }
+      // config.headers = {
+      //   Authorization: `Bearer ${token}`
+      // }
       
       // create request object
-      const newRequest = new Request(resource, config);
+      //const newRequest = new Request(resource, config);
+      console.log(token)
 
-      const response = await fetch(newRequest);       
+      const response = await fetch(resource, {
+        signal: signal,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });       
 
       if(!response.ok) {
           throw Error('Could not get data for resource requested.')

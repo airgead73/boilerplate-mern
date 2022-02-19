@@ -3,7 +3,7 @@ const {
   AUTH0_DOMAIN: domain,
   CLIENT_ORIGIN_URL: clientOriginUrl,
   SERVER_PORT: serverPort
-}
+} = process.env;
 
 const clientOrigins = [clientOriginUrl];
 

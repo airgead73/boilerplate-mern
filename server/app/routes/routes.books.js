@@ -6,7 +6,7 @@ const { checkJwt } = require('../middleware/checkJwt');
 const { read, readOne, create, update, remove } = require('../controllers/controller.books');
 
 // routes
-booksRouter.route('/').get(read).post(checkJwt,create);
+booksRouter.route('/').get(checkJwt, read).post(checkJwt,create);
 
 booksRouter.route('/:id').get(checkJwt, readOne).put(checkJwt, update).delete(checkJwt, remove);
 
