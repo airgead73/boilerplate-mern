@@ -1,9 +1,9 @@
-import useFetch from '../hooks/useFetch';
+import useSecureFetch from '../hooks/useSecureFetch';
 import { URL_SERVER } from '../constants';
 
 export default function Books() {
   
-  const { data: books, isPending, error } = useFetch(`${URL_SERVER}/api/books`);
+  const { data: books, isPending, error } = useSecureFetch(`${URL_SERVER}/api/books`);
 
   return (
     <div>

@@ -1,61 +1,44 @@
 import { useState, useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const useSecureFetch = (_resource, _requestOptions) => {
+
+const useSecureFetch = (resource, requestConfig) => {
+  
 
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently } = useAuth0();  
 
-  useEffect(() => {
+  useEffect(() => { 
 
   // create fetch abort controller
   const controller = new AbortController();
+  const { signal } = controller;
+  let config;
 
-  // create request object
-
-  const createRequest = async (_url, _options) => {
-
+  // function to execute fetch
+  const fetchData = async () => {
     try {
-      
+
       const token = await getAccessTokenSilently();
-      const { signal } = controller;
-      let config;
-  
-      // attach signal
-      if(_options) {
-        config = _options;
+
+        // add signal to request config
+      if(requestConfig) {
+        config = requestConfig;
         config.signal = signal;
       } else {
         config = { signal: signal }
       }
-  
-      // attach headers
+
       config.headers = {
         Authorization: `Bearer ${token}`
       }
-  
-      const newRequest = await new Request(_url, config);
-  
-      return newRequest;
+      
+      // create request object
+      const newRequest = new Request(resource, config);
 
-
-    } catch(error) {
-      console.log(error)
-    }
-
-
-
-  }
-
-  // create fetch
-
-  const fetchData = async (_request) => {
-    try {
-
-
-      const response = await fetch(_request);       
+      const response = await fetch(newRequest);       
 
       if(!response.ok) {
           throw Error('Could not get data for resource requested.')
@@ -79,15 +62,15 @@ const useSecureFetch = (_resource, _requestOptions) => {
       }
   
     } 
-  }    
+  }   
     
   // call fetchData
-  fetchData(createRequest(_resource, _requestOptions));
+  fetchData();
 
   // cleanup fetch
   return () => controller.abort();
 
-  }, [_resource]);
+  }, [resource]);
 
   return { data, isPending, error };
   
