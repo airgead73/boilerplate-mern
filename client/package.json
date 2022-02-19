@@ -11,9 +11,9 @@
   },
   "scripts": {
     "prestart": "npm run clear",
-    "start": "DOMAIN=$npm_config_domain CLIENTID=$npm_config_clientid BASEURL=$npm_config_baseurl AUTH0_AUDIENCE=$npm_config_audience SERVER_URL=$npm_config_serverUrl parcel --open --port $npm_config_port --dist-dir ../server/public",
+    "start": "DOMAIN=$npm_config_domain CLIENTID=$npm_config_clientid URL_STORE=$npm_config_urlstore AUTH0_AUDIENCE=$npm_config_audience URL_SERVER=$npm_config_urlserver parcel --open --port $npm_config_port --dist-dir ../server/public",
     "prebuild": "npm run clear",
-    "build": "DOMAIN=$npm_config_domain CLIENTID=$npm_config_clientid BASEURL=$npm_config_baseurl AUTH0_AUDIENCE=$npm_config_audience SERVER_URL=$npm_config_serverUrl parcel build",
+    "build": "DOMAIN=$npm_config_domain CLIENTID=$npm_config_clientid URL_STORE=$npm_config_urlstore AUTH0_AUDIENCE=$npm_config_audience URL_SERVER=$npm_config_urlserver parcel build",
     "clear": "rm -rf ../server/public .parcel-cache"
   },
   "keywords": [

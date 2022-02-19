@@ -14,7 +14,7 @@ const app = express();
  */
 
 app.use(helmet());
-app.use(cors({ origin: process.env.CLIENT_ORIGIN }))
+app.use(cors({ origin: process.env.CLIENT_ORIGIN_URL }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 

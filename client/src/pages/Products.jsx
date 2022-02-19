@@ -1,10 +1,10 @@
 import useFetch from '../hooks/useFetch';
-import { BASEURL } from '../constants';
+import { URL_STORE } from '../constants';
 import { Figure } from '../components';
 
 function Products() {
 
-  const { data: products, error, isPending } = useFetch(`${BASEURL}/products?limit=5&sort=desc`);
+  const { data: products, error, isPending } = useFetch(`${URL_STORE}/products?limit=5&sort=desc`);
 
   return (
     <div>

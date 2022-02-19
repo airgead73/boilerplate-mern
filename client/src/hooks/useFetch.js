@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 
-const useFetch = (_resource, _requestOptions) => {
+import { useState, useEffect } from 'react';
+
+const useFetch = (resource, requestConfig) => {
 
   const [data, setData] = useState(null);
   const [isPending, setIsPending] = useState(true);
@@ -10,33 +12,25 @@ const useFetch = (_resource, _requestOptions) => {
 
   // create fetch abort controller
   const controller = new AbortController();
+  const { signal } = controller;
+  let config;
 
-  // create request object
-
-  const createRequest = (_url, _options) => {
-
-    const { signal } = controller;
-    let config;
-
-    if(_options) {
-      config = _options;
-      config.signal = signal;
-    } else {
-      config = { signal: signal }
-    }
-
-    const newRequest = new Request(_url, config);
-
-    return newRequest;
-
+  // add signal to request config
+  if(requestConfig) {
+    config = requestConfig;
+    config.signal = signal;
+  } else {
+    config = { signal: signal }
   }
+  
+  // create request object
+  const newRequest = new Request(resource, config);
 
-  // create fetch
-
-  const fetchData = async (_request) => {
+  // function to execute fetch
+  const fetchData = async () => {
     try {
 
-      const response = await fetch(_request);       
+      const response = await fetch(newRequest);       
 
       if(!response.ok) {
           throw Error('Could not get data for resource requested.')
@@ -60,16 +54,15 @@ const useFetch = (_resource, _requestOptions) => {
       }
   
     } 
-  } 
-   
+  }   
     
   // call fetchData
-  fetchData(createRequest(_resource, _requestOptions));
+  fetchData();
 
   // cleanup fetch
   return () => controller.abort();
 
-  }, [_resource]);
+  }, [resource]);
 
   return { data, isPending, error };
   

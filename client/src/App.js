@@ -1,7 +1,7 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Routes, Route } from 'react-router-dom';
 import { AuthenticationBtn } from './auth';
-
+import { DOMAIN, CLIENTID, URL_SERVER, URL_STORE } from './constants';
 // pages
 import {
   Home,
@@ -20,6 +20,13 @@ import {
 import ProtectedRoutes from './auth/ProtectedRoutes';
 
 function App() {   
+
+  console.log({
+    domain: DOMAIN,
+    id: CLIENTID,
+    server: URL_SERVER,
+    store: URL_STORE
+  })
 
   const {
     isLoading,

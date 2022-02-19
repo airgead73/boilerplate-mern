@@ -1,7 +1,7 @@
 import {
-  BASEURL,
-  SERVER_URL
-} from './uri';
+  URL_STORE,
+  URL_SERVER
+} from './api';
 
 import {
   DOMAIN,
@@ -9,8 +9,8 @@ import {
 } from './access';
 
 export {
-  BASEURL,
   DOMAIN,
   CLIENTID,
-  SERVER_URL
+  URL_SERVER,
+  URL_STORE
 }
