@@ -1,11 +1,12 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { Routes, Route } from 'react-router-dom';
 import { AuthenticationBtn } from './auth';
-import { DOMAIN, CLIENTID, URL_SERVER, URL_STORE } from './constants';
+
 // pages
 import {
   Home,
   About,
+  Books,
   Dashboard,
   Goals,
   PageNotFound,
@@ -44,6 +45,7 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route element={<ProtectedRoutes/>}>
           <Route path="/dashboard" element={<Dashboard/>}/>
+          <Route path="/books" element={<Books/>}/>
           <Route path="/goals" element={<Goals/>}/>
           <Route path="/profile" element={<Profile/>}/>
           <Route path="/products" element={<Products/>}/>

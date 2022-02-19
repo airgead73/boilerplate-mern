@@ -12,8 +12,9 @@ const Book = require('../models/book.model');
     throw new Error('please send required fields')
   }
 
-  const book = await Goal.create({
-    text: req.body.text
+  const book = await Book.create({
+    title: req.body.title,
+    author: req.body.author
   });
   
   res.status(200).json(book);
@@ -36,7 +37,15 @@ exports.read = asyncHandler(async (req, res) => {
  * @access Private
  * */
 exports.readOne =  asyncHandler(async (req, res) => {
-  res.status(200).json({ message: `Get goal ${req.params.id}`});
+  const book = await Book.findById(req.params.id);
+
+  if(!book) {
+    const error = new Error('Book not found.');
+    error.status = 400
+    return next(error)
+  }
+
+  res.status(200).json(book);
   
 });
 
